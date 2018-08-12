@@ -19,21 +19,6 @@ import timber.log.Timber;
 
 public class Configuration {
 
-    private static Configuration sInstance;
-
-    /**
-     * 全局保存一个Configuration，方便框架初始化的时候获得所需要的参数
-     * @return 全局的configuration
-     */
-    public static Configuration getConfig() {
-
-        if (sInstance == null) {
-            throw new IllegalStateException("null Configuration instance");
-        }
-
-        return sInstance;
-    }
-
     /**
      * 服务器接口，这个必须要实现
      */
@@ -54,7 +39,10 @@ public class Configuration {
      */
     private File rxCacheDir;
 
-
+    /**
+     * 有的框架初始化需要Context，这里保存一个Context方便以后的使用
+     */
+    private Context context;
 
 
     void setBaseUrl(HttpUrl baseUrl) {
@@ -73,6 +61,10 @@ public class Configuration {
         this.rxCacheDir = cacheDir;
     }
 
+    void setContext(Context context) {
+        this.context = context;
+    }
+
     public HttpUrl getBaseUrl() {
         return baseUrl;
     }
@@ -87,6 +79,10 @@ public class Configuration {
 
     public File getRxCacheDir() {
         return this.rxCacheDir;
+    }
+
+    public Context getContext() {
+        return this.context;
     }
 
     private Configuration() {
@@ -129,11 +125,13 @@ public class Configuration {
         /**
          * 这里只需要一个全局的Configuration，因此并不需要builder去返回一个实例
          */
-        void innerBuild() {
+        Configuration build() {
             Configuration con =  new Configuration();
 
+            con.setContext(mContext);
+
             if (mBaseUrl == null) {
-                throw new IllegalStateException("you must set base url through IConfiguration.Inject(Configuration.Builder)");
+                throw new IllegalStateException("you must set base url through IConfigurationInjector.Inject(Configuration.Builder)");
             } else {
                 con.setBaseUrl(mBaseUrl);
             }
@@ -156,8 +154,8 @@ public class Configuration {
                 con.setRxCacheDir(mRxCacheDir);
             }
 
+            return con;
 
-            sInstance = con;
         }
     }
 }

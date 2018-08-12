@@ -1,4 +1,4 @@
-package com.llx.basemodel.fms;
+package com.llx.basemodel.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.LoginActivity" />
+
+        <meta-data android:name="ConfigurationKey"
+            android:value="com.llx.basemodel.BaseModelConfig"/>
+
     </application>
 
 </manifest>

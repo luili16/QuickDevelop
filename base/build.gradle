@@ -26,8 +26,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation rootProject.ext.dependencies['appcompat-v7']
+
+
+    implementation rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-    api rootProject.ext.dependencies["dagger2"]
+
     api rootProject.ext.dependencies["timber"]
     api rootProject.ext.dependencies["guava"]
     api rootProject.ext.dependencies["rxjava2"]
@@ -36,7 +39,7 @@ dependencies {
     api rootProject.ext.dependencies["json-speaker"]
     api rootProject.ext.dependencies["gson"]
     api rootProject.ext.dependencies["room-runtime"]
-    api rootProject.ext.dependencies["room-processor"]
+    annotationProcessor rootProject.ext.dependencies["room-processor"]
     api rootProject.ext.dependencies["room-rx-java"]
     api rootProject.ext.dependencies["room-guava"]
     api rootProject.ext.dependencies["room-testhelper"]

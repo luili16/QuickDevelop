@@ -13,7 +13,4 @@ public interface ILoginModel extends IModel {
 
     Observable<Key> getPublicKey();
 
-
-
-
 }

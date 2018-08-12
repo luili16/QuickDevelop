@@ -3,13 +3,13 @@ package com.llx.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.llx.base.model.Repository;
+
 import timber.log.Timber;
 
 public class AppDelegate implements IAppDelegate {
 
     private Application mApp;
-
-
 
     @Override
     public void attachBaseContext(Context base) {
@@ -25,36 +25,36 @@ public class AppDelegate implements IAppDelegate {
 
     /**
      * 常用框架的初始化
-     *
-     *  在一个进程里面，所有的model都共享同一个框架的配置，
-     *  这里面初始化Configuration里面的参数
-     *
-     *  初始化日志打印的格式
-     *
+     * <p>
+     * 在一个进程里面，所有的model都共享同一个框架的配置，
+     * 这里面初始化Configuration里面的参数
+     * <p>
+     * 初始化日志打印的格式
      */
     private void init() {
 
-        IConfiguration config = ManifestParser.parse(mApp);
+        Configuration.Builder builder = new Configuration.Builder(mApp);
+        IConfigurationInjector injector = ManifestParser.parse(mApp);
 
-        Configuration.Builder builder = new Configuration.Builder();
-
-        if (config != null) {
-            config.injectConfig(builder, mApp);
+        if (injector != null) {
+            builder = injector.inject(builder, mApp);
         }
 
-        builder.innerBuild();
-        Configuration conn = Configuration.getConfig();
+        Configuration config = builder.build();
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(conn.getDebugTrees().toArray(new Timber.Tree[]{}));
+            Timber.plant(config.getDebugTrees().toArray(new Timber.Tree[]{}));
         } else {
             // 错误日志处理
-            Timber.plant(conn.getProduceTrees().toArray(new Timber.Tree[]{}));
+            Timber.plant(config.getProduceTrees().toArray(new Timber.Tree[]{}));
         }
+        // 初始化model层的网络请求层
+        Repository.init(config);
     }
 
     /**
      * 代理注册ActivityLifecycleCallbacks
+     *
      * @param callbacks
      */
     public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callbacks) {

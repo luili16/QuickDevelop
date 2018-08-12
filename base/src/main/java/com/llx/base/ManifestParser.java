@@ -3,16 +3,13 @@ package com.llx.base;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 
-import java.security.Key;
 
 class ManifestParser {
 
     private static final String KEY = "ConfigurationKey";
 
-    public static
-    IConfiguration parse(Context context) {
+    public static IConfigurationInjector parse(Context context) {
 
         String packageName = context.getPackageName();
         try {
@@ -31,17 +28,17 @@ class ManifestParser {
         return null;
     }
 
-    private static IConfiguration parseModule(String className) {
+    private static IConfigurationInjector parseModule(String className) {
 
         try {
             Class<?> aClass = Class.forName(className);
 
             Object ins = aClass.newInstance();
-            if (!(ins instanceof IConfiguration)) {
+            if (!(ins instanceof IConfigurationInjector)) {
                 throw new RuntimeException("Expected instanceof ConfigModule, but found: " + ins);
             }
 
-            return (IConfiguration) ins;
+            return (IConfigurationInjector) ins;
         } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException("Unable to find Configuration implementation", e);
         } catch (IllegalAccessException | InstantiationException e) {
