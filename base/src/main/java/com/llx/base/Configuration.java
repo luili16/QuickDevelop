@@ -142,11 +142,11 @@ public class Configuration {
                 con.setDebugTrees(mDebugTrees);
             }
 
-            if (mProduceTrees == null) {
+            /*if (mProduceTrees == null) {
                 con.setProduceTrees(Collections.<Timber.Tree>singletonList(new ErrorLogReportingTree()));
             } else {
                 con.setProduceTrees(mProduceTrees);
-            }
+            }*/
 
             if (mRxCacheDir == null) {
                 con.setRxCacheDir(mContext.getCacheDir());

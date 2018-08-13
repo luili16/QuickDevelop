@@ -1,22 +1,20 @@
-package com.llx.base;
+package com.llx.basemodel;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.llx.base.model.Repository;
+import com.llx.base.BuildConfig;
 
 import timber.log.Timber;
 
-public class AppDelegate implements IAppDelegate {
+public class AppDelegate {
 
     private Application mApp;
 
-    @Override
     public void attachBaseContext(Context base) {
 
     }
 
-    @Override
     public void onCreate(Application app) {
         mApp = app;
 
@@ -33,23 +31,14 @@ public class AppDelegate implements IAppDelegate {
      */
     private void init() {
 
-        Configuration.Builder builder = new Configuration.Builder(mApp);
-        IConfigurationInjector injector = ManifestParser.parse(mApp);
 
-        if (injector != null) {
-            builder = injector.inject(builder, mApp);
-        }
-
-        Configuration config = builder.build();
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(config.getDebugTrees().toArray(new Timber.Tree[]{}));
+            Timber.plant(new Timber.DebugTree());
         } else {
             // 错误日志处理
-            Timber.plant(config.getProduceTrees().toArray(new Timber.Tree[]{}));
+            Timber.plant();
         }
-        // 初始化model层的网络请求层
-        Repository.init(config);
     }
 
     /**
@@ -65,7 +54,7 @@ public class AppDelegate implements IAppDelegate {
         return mApp.getApplicationContext();
     }
 
-    @Override
+
     public void onTerminate(Application app) {
 
     }

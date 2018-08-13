@@ -1,4 +1,4 @@
-package com.llx.base;
+package com.llx.basemodel.presenter;
 
 /**
  * Presenter层所共有的抽象方法

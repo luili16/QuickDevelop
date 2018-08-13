@@ -1,4 +1,4 @@
-package com.llx.base;
+package com.llx.basemodel;
 
 import android.app.Activity;
 import android.app.Application;

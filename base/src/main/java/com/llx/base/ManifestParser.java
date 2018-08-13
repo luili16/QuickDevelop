@@ -3,6 +3,7 @@ package com.llx.base;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 
 class ManifestParser {
@@ -18,7 +19,7 @@ class ManifestParser {
             if (appInfo.metaData != null) {
                 for (String key : appInfo.metaData.keySet()) {
                     if (KEY.equals(key)) {
-                        return parseModule(key);
+                        return parseModule(appInfo.metaData.getString(key));
                     }
                 }
             }

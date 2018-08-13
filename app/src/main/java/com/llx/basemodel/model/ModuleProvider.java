@@ -1,6 +1,7 @@
 package com.llx.basemodel.model;
 
-import com.llx.basemodel.model.ILoginModel;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -9,8 +10,8 @@ import dagger.Provides;
 public class ModuleProvider {
 
     @Provides
+    @Singleton
     ILoginModel provideLoginModel() {
         return new LoginModel();
     }
-
 }

@@ -1,4 +1,4 @@
-package com.llx.base;
+package com.llx.basemodel;
 
 import android.support.annotation.NonNull;
 import android.util.Log;

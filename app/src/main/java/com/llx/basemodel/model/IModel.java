@@ -1,4 +1,4 @@
-package com.llx.base.model;
+package com.llx.basemodel.model;
 
 import android.content.Context;
 

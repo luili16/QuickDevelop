@@ -1,4 +1,4 @@
-package com.llx.base.model;
+package com.llx.basemodel.model;
 
 import com.llx.base.Configuration;
 
@@ -27,7 +27,7 @@ public class Repository {
         sInstance = new Repository(config);
     }
 
-    public static Repository instance() {
+    static Repository instance() {
 
         if (sInstance == null) {
             throw new IllegalStateException("call Repository.init(Configuration) before instance()");
@@ -41,7 +41,7 @@ public class Repository {
 
     private RxCache mRxCache;
 
-    private Repository(Configuration config) {
+    public Repository(Configuration config) {
         HttpUrl baseUrl = config.getBaseUrl();
         mRetrofit = new Retrofit.Builder().
                 baseUrl(baseUrl).

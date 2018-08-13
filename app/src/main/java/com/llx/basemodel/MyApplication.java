@@ -3,12 +3,9 @@ package com.llx.basemodel;
 import android.app.Application;
 import android.content.Context;
 
-import com.llx.base.AppDelegate;
-import com.llx.base.IAppDelegate;
-
 public class MyApplication extends Application {
 
-    IAppDelegate mAppDelegate;
+    AppDelegate mAppDelegate;
 
     @Override
     protected void attachBaseContext(Context base) {
