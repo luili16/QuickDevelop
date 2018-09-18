@@ -13,6 +13,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Nullable
@@ -21,6 +23,4 @@ public class LoginFragment extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
 
     }
-
-
 }

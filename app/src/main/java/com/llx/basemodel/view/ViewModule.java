@@ -15,8 +15,6 @@ public class ViewModule {
         mLoginView = loginView;
     }
 
-
-
     @Provides
     ILoginView provideILoginView() {
         return mLoginView;

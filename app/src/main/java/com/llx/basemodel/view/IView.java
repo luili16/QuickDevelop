@@ -13,7 +13,7 @@ public interface IView {
 
     void hideLoading();
 
-    void showMessage();
+    void showMessage(String msg);
 
     /**
      * 跳转到一个新的activity

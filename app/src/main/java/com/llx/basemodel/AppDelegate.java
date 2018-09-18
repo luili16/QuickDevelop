@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.llx.base.BuildConfig;
+import com.llx.basemodel.model.Repository;
 
 import timber.log.Timber;
 
@@ -39,6 +40,8 @@ public class AppDelegate {
             // 错误日志处理
             Timber.plant();
         }
+
+        Repository.init(mApp);
     }
 
     /**

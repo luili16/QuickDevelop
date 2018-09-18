@@ -36,6 +36,7 @@ dependencies {
     api rootProject.ext.dependencies["rxjava2"]
     api rootProject.ext.dependencies["rxandroid2"]
     api rootProject.ext.dependencies["rxcache2"]
+    api rootProject.ext.dependencies["rxbinding"]
     api rootProject.ext.dependencies["json-speaker"]
     api rootProject.ext.dependencies["gson"]
     api rootProject.ext.dependencies["room-runtime"]
@@ -47,6 +48,7 @@ dependencies {
     api rootProject.ext.dependencies["retrofit-converter-gson"]
     api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
     api rootProject.ext.dependencies["okhttp3"]
+    api rootProject.ext.dependencies["rxpermissions2"]
 
     testImplementation rootProject.ext.dependencies['junit']
     androidTestImplementation rootProject.ext.dependencies['runner']
